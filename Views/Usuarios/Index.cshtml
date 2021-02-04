@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Crud.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Sistema Portuário</h2>
+
+<p>
+    <a asp-action="Create">Criar Novo Cadastro</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroContainer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categoria)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroContainer)
+            </td>
+            <td>
+                @*Html.DisplayFor(model => model.Tipo)*@
+                @if (item.Tipo == "1")
+                {
+                    <label>20</label>
+                }
+                else
+                  if (item.Tipo == "2")
+                {
+                    <label>40</label>
+                }
+            </td>
+            <td>
+                @*Html.DisplayNameFor(model => model.Status)*@
+
+                @if (item.Status == 1)
+                {
+                    <label>Cheio</label>
+                }
+                else
+                  if (item.Status == 2)
+                {
+                    <label>Vazio</label>
+                }
+            </td>
+            <td>
+                @*Html.DisplayFor(model => model.Categoria)*@
+                @if (item.Categoria == "1")
+                {
+                    <label>Importação</label>
+                }
+                else
+                    if (item.Categoria == "2")
+                {
+                    <label>Exportação</label>
+                }
+            </td>
+           
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
